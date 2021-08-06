@@ -1,0 +1,27 @@
+import time
+from selenium import webdriver
+
+chrome_path = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
+
+#Legg inn hvor chromium ble lagret da du lastet den ned (eks: C:\\Users\\Brukernavn\\Downloads\\chromedriver.exe)
+driver = webdriver.Chrome(executable_path="PATH")
+
+
+driver.get("https://www.barnasegenbokverden.no/bokklubber/mypage/mypage.action#/main-books")
+
+#Legg inn E-post som brukes til innlogging.
+driver.find_element_by_id("login_username").send_keys("E-POST")
+#Legg inn passord til innlogging
+driver.find_element_by_id("login_password").send_keys("PASSORD")
+
+driver.find_element_by_id("login_submit").click()
+time.sleep(1)
+driver.find_element_by_id("Hovedbøker").click()
+time.sleep(1)
+driver.get("https://www.barnasegenbokverden.no/bokklubber/order/multiple-main-books.action")
+time.sleep(1)
+driver.find_element_by_xpath("//*[@class='main-book-button-container btn']").click()
+time.sleep(1)
+driver.find_element_by_xpath("//*[@class='btn btn-primary btn-lg style-scope cancel-dialog']").click()
+time.sleep(1)
+driver.quit()
